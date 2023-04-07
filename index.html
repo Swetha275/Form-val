@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Node JS Express Form Submission Example - ItSolutionStuff.com</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Node JS Express Form Submission Example - ItSolutionStuff.com</h1>
+      <form action="/" method="POST">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp" placeholder="Enter first name" name="first_name">
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" class="form-control" id="lastName" aria-describedby="emailHelp" placeholder="Enter last name" name="last_name">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="Enter email">
+        </div>
+        <button type="button" class="btn btn-primary" onClick="onit()">Submit</button>
+      </form>
+      <p id="demo"></p>
+      <script>
+        function onit() {
+          document.getElementById("demo").innerHTML = "Submitted";
+          const  fname = document.getElementById("firstName").value;
+          const  lname = document.getElementById("lastName").value;
+          const  email = document.getElementById("exampleInputEmail1").value;
+
+          var regName = /^[a-zA-Z]+$/;
+
+          
+           var regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+          
+          if(!regName.test(fname)){
+               alert('Invalid first name given.');
+               document.getElementById('firstName').focus();
+               return false;  
+          }
+          if(!regName.test(lname)){
+            alert('Invalid last name given.');
+            document.getElementById('lastName').focus();
+            return false;  
+       }
+       if(!regEmail.test(email)){
+        alert('Invalid email given.');
+        document.getElementById('email').focus();
+        return false;  
+   }
+          if (fname==null || fname=="" || lname==null || lname=="" || email==null || email==""){  
+            alert("Details can't be empty");  
+            return false;  
+          }
+          console.log(fname,lname,email,"podaannnnnnnnnnnnnnnnnnnnngggggg");
+          fetch('/', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({  fname,lname , email })
+        })
+           .then(response => response.json())
+           .then(response => console.log(JSON.stringify(response)))
+        }
+        </script>
+  </body>
+</html>
