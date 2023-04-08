@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Form Submission WITH JAVASCRIPT EXPRESS JS WITH MYSQL DATABASE</title>
+    <title>Form Submission</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        .container{
+            box-shadow: 5px 10px 18px #888888;
+    }
+    .form-group{
+        margin-top: 30px;
+        margin-bottom: 30px;
+        padding: 10px;
+    }
+    .btnclass{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+   
+    </style>
   </head>
-  <body>
-    <div class="container">
-      <h1>Form Submission WITH JAVASCRIPT EXPRESS JS WITH MYSQL DATABASE</h1>
+  <body style="background-color: #F8BB7C;">
+    <div class="container" style="background-color: #ffffff;margin-top: 10px">
+      <h1>Form Submission-Javascript Express JS WITH MYSQL Database</h1>
       <form action="/" method="POST">
         <div class="form-group">
           <label for="firstName">First Name</label>
@@ -22,12 +39,15 @@
           <label for="exampleInputEmail1">Email address</label>
           <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="Enter email">
         </div>
-        <button type="button" class="btn btn-primary" onClick="onit()">Submit</button>
+        <div class="btnclass">
+            <button type="button" class="btn btn-primary" onClick="onit()">Submit</button>
+          </div>
+        
       </form>
       <p id="demo"></p>
       <script>
         function onit() {
-          document.getElementById("demo").innerHTML = "Submitted";
+          
           const  fname = document.getElementById("firstName").value;
           const  lname = document.getElementById("lastName").value;
           const  email = document.getElementById("exampleInputEmail1").value;
@@ -56,7 +76,11 @@
             alert("Details can't be empty");  
             return false;  
           }
-          console.log(fname,lname,email,"podaa");
+          console.log(fname,lname,email,"podaaaaaaaaaaaaaaa");
+          document.getElementById("demo").innerHTML = " Thank you!" + " " + document.getElementById("firstName").value +" Your response has been recorded. Submit another response? ";
+          document.getElementById("firstName").value = '';
+          document.getElementById("lastName").value = '';
+          document.getElementById("exampleInputEmail1").value = '';
           fetch('/', {
             method: 'POST',
             headers: {
