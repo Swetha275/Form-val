@@ -24,7 +24,7 @@
     </style>
   </head>
   <body style="background-color: #F8BB7C;">
-    <div class="container" style="background-color: #ffffff;margin-top: 10px">
+    <div class="container" style="background-color: #ffffff;margin-top: 10px;margin-bottom: 30px;">
       <h1>Form Submission-Javascript Express JS WITH MYSQL Database</h1>
       <form action="/" method="POST">
         <div class="form-group">
@@ -39,18 +39,68 @@
           <label for="exampleInputEmail1">Email address</label>
           <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="Enter email">
         </div>
+        <div class="form-group">
+          <label for="birthday">Date of birth</label>
+          <input type="date" class="form-control" id="birthday" aria-describedby="emailHelp" name="dob" placeholder="Enter DOB">
+        </div>
+        <div class="form-group">
+          <label for="gen">Gender</label>
+          <input type="text" class="form-control" id="gen" aria-describedby="emailHelp" placeholder="Enter Gender" name="gender">
+        </div>
+        <div class="form-group">
+          <label for="add1">Address line 1</label>
+          <input type="text" class="form-control" id="add1" aria-describedby="emailHelp" placeholder="Enter Address line 1" name="ad1">
+        </div>
+        <div class="form-group">
+          <label for="add2">Address line 2</label>
+          <input type="text" class="form-control" id="add2" aria-describedby="emailHelp" placeholder="Enter Address line 2" name="ad2">
+        </div>
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" class="form-control" id="city" aria-describedby="emailHelp" placeholder="Enter City" name="city">
+        </div>
+        <div class="form-group">
+          <label for="state">State</label>
+          <input type="text" class="form-control" id="state" aria-describedby="emailHelp" placeholder="Enter State" name="state">
+        </div>
+        <div class="form-group">
+          <label for="country">Country</label>
+          <input type="text" class="form-control" id="country" aria-describedby="emailHelp" placeholder="Enter Country" name="country">
+        </div>
+        <div class="form-group">
+          <label for="zip">ZipCode</label>
+          <input type="number" class="form-control" id="zip" aria-describedby="emailHelp" placeholder="Enter Zip Code" name="zip">
+        </div>
         <div class="btnclass">
             <button type="button" class="btn btn-primary" onClick="onit()">Submit</button>
+            <a href="display.html"><button type="button" class="btn btn-primary"> View </button></a>
+            
+
           </div>
+          
         
       </form>
       <p id="demo"></p>
       <script>
+        function view(){
+          fetch('/view',{
+            method:"GET"
+          }).then(response=>console.log("ssss"))
+
+        }
         function onit() {
           
           const  fname = document.getElementById("firstName").value;
           const  lname = document.getElementById("lastName").value;
           const  email = document.getElementById("exampleInputEmail1").value;
+          const  dob    = document.getElementById("birthday").value;
+          const  gender  = document.getElementById("gen").value;
+          const  adl1    = document.getElementById("add1").value;
+          const  adl2    = document.getElementById("add2").value;
+          const  city    = document.getElementById("city").value;
+          const  state   = document.getElementById("state").value;
+          const  country = document.getElementById("country").value;
+          const  zipcode = document.getElementById("zip").value;
 
           var regName = /^[a-zA-Z]+$/;
 
@@ -72,22 +122,34 @@
         document.getElementById('email').focus();
         return false;  
    }
-          if (fname==null || fname=="" || lname==null || lname=="" || email==null || email==""){  
+          if (fname==null || fname=="" || lname==null || lname=="" || email==null || email=="" ||
+          dob==null || dob=="" || gender==null || gender=="" || adl1==null || adl1=="" ||
+          adl2==null || adl2=="" || city==null || city=="" || state==null || state=="" ||
+          country==null || country=="" || zipcode==null || zipcode=="" ){  
             alert("Details can't be empty");  
             return false;  
           }
-          console.log(fname,lname,email,"podaaaaaaaaaaaaaaa");
+          console.log(fname,lname,dob,"podaaaaaaaaaaaaaaa");
           document.getElementById("demo").innerHTML = " Thank you!" + " " + document.getElementById("firstName").value +" Your response has been recorded. Submit another response? ";
           document.getElementById("firstName").value = '';
           document.getElementById("lastName").value = '';
           document.getElementById("exampleInputEmail1").value = '';
+          document.getElementById("birthday").value = '';
+          document.getElementById("gen").value = '';
+          document.getElementById("add1").value = '';
+          document.getElementById("add2").value = '';
+          document.getElementById("city").value = '';
+          document.getElementById("state").value = '';
+          document.getElementById("country").value = '';
+          document.getElementById("zip").value = '';
+
           fetch('/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({  fname,lname , email })
+            body: JSON.stringify({  fname,lname , email , dob ,gender ,adl1 ,adl2, city, state , country, zipcode })
         })
            .then(response => response.json())
            .then(response => console.log(JSON.stringify(response)))
@@ -95,3 +157,6 @@
         </script>
   </body>
 </html>
+
+
+
