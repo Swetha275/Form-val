@@ -64,3 +64,4 @@ connection.connect(function(err) {
     }
     console.log('Connected to MySQL database with connection id ' + connection.threadId);
   });
+ 
